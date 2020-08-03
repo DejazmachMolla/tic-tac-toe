@@ -44,6 +44,8 @@ Lint/ScriptPermission:
   Enabled: false
 Lint/StructNewOverride:
   Enabled: false
+Style/GlobalVars:
+  Enabled: false
 Style/HashEachMethods:
   Enabled: false
 Style/HashTransformKeys:
