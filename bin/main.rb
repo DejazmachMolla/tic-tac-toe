@@ -24,13 +24,10 @@ def receive_player_info
   puts 'Player 2: Enter Your Name'
   player_2_name = gets.chomp
   return [player_1_name, player_2_name]
-  # $board = [[1, 2, 3], [4, 5, 6], [7, 8, 9]]
 end
 
 
 def display_board(board)
-  #$board[1][1] = 'X' unless args[0].nil?
-  #board = game.board
   puts ' _________________________ '
   puts '|__________BOARD__________|'
   puts '|                         |'
@@ -62,9 +59,10 @@ def play_game(game) # receive game as argument
   while !is_game_won || !is_game_drawn # check game won or drawn before requesting entry
     if entry
       game = switch_current_player(game) # change current player except from the first move
+      game = game.update_board(entry)
     end
     display_board(game.board)
-    puts
+    
     
     puts "#{game.current_player.name}'s turn!" # current players's turn
     entry = receive_number(game) # pass the game to the receive number
