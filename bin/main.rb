@@ -42,34 +42,35 @@ end
 def start
   continue_game = true
   while continue_game
-    reset_board
-    play_game
+    # Create players
+    reset_board # Create game with the users and board
+    play_game # Pass game to the play game method
     puts 'Do you want to play again? Enter Y to continue or any other character to quit.'
     continue_game_char = gets.chomp
     continue_game = %w[y Y].include?(continue_game_char)
   end
 end
 
-def play_game
-  while !game_won || !game_drawn
+def play_game(game) # receive game as argument
+  entry = nil
+  while !game_won(entry) || !game_drawn(entry) # check game won or drawn from the game class
+    switch_current_player(game) if !entry.nil? # switch current player except from the first move
     display_board
     puts
-    puts "#{$player_1_name}'s turn!"
-    entry = find_number
+    
+    puts "#{$player_1_name}'s turn!" # current players's turn
+    entry = receive_number(game) # pass the game to the receive number
 
-    display_board(entry)
-    puts
-    puts "#{$player_2_name}'s turn!"
-    entry = find_number
   end
+
   if game_won
-    puts "Congratulations #{$player_1_name}. You won the game."
+    puts "Congratulations #{$player_1_name}. You won the game." #congratulations current player
   elsif game_drawn
     puts 'Game Drawn!'
   end
 end
 
-def find_number
+def receive_number
   not_valid_entry = true
   while not_valid_entry
     entry = gets.chomp.to_i
@@ -85,6 +86,10 @@ def find_number
     end
   end
   entry
+end
+
+def switch_current_player(game)
+  
 end
 
 def game_won
