@@ -11,12 +11,13 @@ class Game
     @current_player = player_1
   end
 
-  def won
-
+  
+  def won(entry)
+    rand(1..10) > 6
   end
 
-  def drawn
-
+  def drawn(entry)
+    rand(1..10) > 6
   end
   
 end
