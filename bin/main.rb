@@ -53,7 +53,7 @@ end
 
 def play_game(game) # receive game as argument
   entry = nil
-  while !game_won(entry) || !game_drawn(entry) # check game won or drawn from the game class
+  while !won(entry) || !drawn(entry) # check game won or drawn from the game class
     switch_current_player(game) if !entry.nil? # switch current player except from the first move
     display_board
     puts
@@ -63,9 +63,9 @@ def play_game(game) # receive game as argument
 
   end
 
-  if game_won
+  if won
     puts "Congratulations #{$player_1_name}. You won the game." #congratulations current player
-  elsif game_drawn
+  elsif drawn
     puts 'Game Drawn!'
   end
 end
@@ -92,11 +92,11 @@ def switch_current_player(game)
   
 end
 
-def game_won
+def won
   rand(1..10) > 6
 end
 
-def game_drawn
+def drawn
   rand(1..10) > 6
 end
 
