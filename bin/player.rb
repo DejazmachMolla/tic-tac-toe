@@ -1,6 +1,8 @@
 class Player
-  @name
-  def initialize(name)
+  attr_accessor :name
+  attr_accessor :sym
+  def initialize(name, sym)
     @name = name
+    @sym = sym
   end
 end

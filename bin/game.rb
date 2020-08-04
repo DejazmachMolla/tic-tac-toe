@@ -1,8 +1,8 @@
 class Game
-  @board
-  @player_1
-  @player_2
-  @current_player
+  attr_accessor :board
+  attr_accessor :player_1
+  attr_accessor :player_2
+  attr_accessor :current_player
 
   def initialize(board, player_1, player_2)
     @board = board
