@@ -34,7 +34,6 @@ class Game
     is_won
   end
 
-  # rubocop: disable Metrics/CyclomaticComplexity
   def drawn
     game = self
     is_drawn = true
@@ -53,7 +52,6 @@ class Game
     end
     is_drawn
   end
-  # rubocop: enable Metrics/CyclomaticComplexity
 
   def update_board(entry)
     game = self
