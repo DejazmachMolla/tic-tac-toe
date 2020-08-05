@@ -1,17 +1,15 @@
 # rubocop: disable Metrics/CyclomaticComplexity
 class Game
   attr_accessor :board
-  attr_accessor :player1
-  attr_accessor :player2
+  attr_reader :player1
+  attr_reader :player2
   attr_accessor :current_player
-  attr_accessor :moves
 
   def initialize(board, player1, player2)
     @board = board
     @player1 = player1
     @player2 = player2
     @current_player = player1
-    @moves = 0
   end
 
   def won
@@ -20,7 +18,6 @@ class Game
     diagonals = game.create_diagonals
     # arrays is a 3 dimensional array with 3 2-dimensional elements
     arrays = [game.board, game.board.transpose, diagonals]
-
     arrays.each do |array|
       array.any? do |arr|
         is_won = true if arr.all? { |elem| elem == game.current_player.sym }
@@ -49,7 +46,6 @@ class Game
 
   def update_board(entry)
     game = self
-    game.moves += 1
     game.board.each_with_index do |_val, index|
       if game.board[index][0] == entry
         game.board[index][0] = game.current_player.sym
