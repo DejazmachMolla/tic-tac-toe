@@ -37,10 +37,10 @@ class Game
     arrays = [game.board, game.board.transpose, diagonals]
     arrays.each do |array|
       array.any? do |arr|
-        if (arr.count { |elem| elem == 'X'} == 2 && arr.any? {|elem| elem.is_a?(Numeric)}) ||
-           (arr.count { |elem| elem == 'O'} == 2 && arr.any? {|elem| elem.is_a?(Numeric)}) ||
-           (arr.count { |elem| elem.is_a?(Numeric)} > 1)
-           is_drawn = false
+        if (arr.count { |elem| elem == 'X' } == 2 && arr.any? { |elem| elem.is_a?(Numeric) }) ||
+           (arr.count { |elem| elem == 'O' } == 2 && arr.any? { |elem| elem.is_a?(Numeric) }) ||
+           (arr.count { |elem| elem.is_a?(Numeric) } > 1)
+          is_drawn = false
         end
       end
     end
