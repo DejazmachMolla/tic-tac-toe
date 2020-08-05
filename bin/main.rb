@@ -1,7 +1,7 @@
 #!/usr/bin/env ruby
 # rubocop: disable Metrics/PerceivedComplexity
-require_relative './game.rb'
-require_relative './player.rb'
+require_relative '../lib/game.rb'
+require_relative '../lib/player.rb'
 puts '  ________  ______   ______       ________  ______    ______       ________  ______   ________ '
 puts ' /        |/      | /      \     /        |/      \  /      \     /        |/      \ /        |'
 puts ' $$$$$$$$/ $$$$$$/ /$$$$$$  |    $$$$$$$$//$$$$$$  |/$$$$$$  |    $$$$$$$$//$$$$$$  |$$$$$$$$/ '
