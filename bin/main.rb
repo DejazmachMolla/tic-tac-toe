@@ -23,9 +23,8 @@ def receive_player_info
   player_1_name = gets.chomp
   puts 'Player 2: Enter Your Name'
   player_2_name = gets.chomp
-  return [player_1_name, player_2_name]
+  [player_1_name, player_2_name]
 end
-
 
 def display_board(board)
   puts ' _________________________ '
@@ -41,10 +40,10 @@ end
 
 def start(players)
   continue_game = true
-  player_1 = Player.new(players[0], 'X')
-  player_2 = Player.new(players[1], 'O')
+  player1 = Player.new(players[0], 'X')
+  player2 = Player.new(players[1], 'O')
   while continue_game
-    game = Game.new([[1, 2, 3], [4, 5, 6], [7, 8, 9]], player_1, player_2)
+    game = Game.new([[1, 2, 3], [4, 5, 6], [7, 8, 9]], player1, player2)
     play(game)
     puts 'Do you want to play again? Enter Y to continue or any other character to quit.'
     continue_game_char = gets.chomp
@@ -52,26 +51,25 @@ def start(players)
   end
 end
 
-def play(game) # receive game as argument
+def play(game)
   entry = nil
   is_won = false
   is_drawn = false
   while !is_won && !is_drawn # check game won or drawn before requesting entry
-    if !entry.nil?
-      game = switch_current_player(game) # change current player except from the first move
-    end
+    game = switch_current_player(game) unless entry.nil? # change current player except from the first move
+
     display_board(game.board) if entry.nil?
 
     puts "#{game.current_player.name}'s turn!" # current players's turn
     entry = receive_number(game) # pass the game to the receive number
     game = game.update_board(entry)
     display_board(game.board)
-    is_won = game.won(entry)
-    is_drawn = game.drawn(entry)
+    is_won = game.won
+    is_drawn = game.drawn
   end
 
   if is_won
-    puts "Congratulations #{game.current_player.name}. You won the game." #congratulations current player
+    puts "Congratulations #{game.current_player.name}. You won the game." # congratulations current player
   elsif is_drawn
     puts 'Game Drawn!'
   end
@@ -96,8 +94,8 @@ def receive_number(game)
 end
 
 def switch_current_player(game)
-  game.current_player = ( game.current_player == game.player_1 ) ? game.player_2 : game.player_1
-  return game
+  game.current_player = game.current_player == game.player1 ? game.player2 : game.player1
+  game
 end
 players = receive_player_info
 start(players)
