@@ -11,11 +11,6 @@ puts '    $$ |     $$ |  $$ |   __$$$$$$/ $$ |  $$$$$$$$ |$$ |   __$$$$$$/ $$ | 
 puts '    $$ |    _$$ |_ $$ \__/  |       $$ |  $$ |  $$ |$$ \__/  |       $$ |  $$ \__$$ |$$ |_____ '
 puts '    $$ |   / $$   |$$    $$/        $$ |  $$ |  $$ |$$    $$/        $$ |  $$    $$/ $$       |'
 puts '    $$/    $$$$$$/  $$$$$$/         $$/   $$/   $$/  $$$$$$/         $$/    $$$$$$/  $$$$$$$$/ '
-
-puts
-puts '==================================NOTE========================================'
-puts 'PLEASE TRY REPEATEDLY TO SEE THE WHOLE PICTURE AS THE GAME IS NOT COMPLETE YET'
-puts '=============================================================================='
 puts
 
 def receive_player_info
@@ -58,18 +53,18 @@ def play(game)
   while !is_won && !is_drawn # check game won or drawn before requesting entry
     game = switch_current_player(game) unless entry.nil? # change current player except from the first move
 
-    display_board(game.board) if entry.nil?
+    display_board(game.board) if entry.nil? # show the board when beginning the game
 
     puts "#{game.current_player.name}'s turn!" # current players's turn
-    entry = receive_number(game) # pass the game to the receive number
+    entry = receive_number(game)
     game = game.update_board(entry)
-    display_board(game.board)
+    display_board(game.board) # show the board each time the board gets updated
     is_won = game.won
     is_drawn = game.drawn
   end
 
   if is_won
-    puts "Congratulations #{game.current_player.name}. You won the game." # congratulations current player
+    puts "Congratulations #{game.current_player.name}. You won the game."
   elsif is_drawn
     puts 'Game Drawn!'
   end
@@ -82,8 +77,10 @@ def receive_number(game)
     if entry < 1 || entry > 9
       puts 'Invalid Move : The number should be between 1 and 9.'
     else
-      index = (entry % 3).zero? ? ((entry / 3) - 1).to_i : (entry / 3).to_i
-      if game.board[index].none? { |val| val == entry.to_i }
+      # row_index = 0 if entry is between 1 and 3, 1 if entry is b/n 4 and 6, 2 otherwise
+      row_index = (entry % 3).zero? ? ((entry / 3) - 1).to_i : (entry / 3).to_i
+      # if the number is not found in the row, it must have been replaced with an X or O => TAKEN
+      if game.board[row_index].none? { |val| val == entry.to_i }
         puts 'Invalid Move : The number is already taken, try another'
       else
         not_valid_entry = false

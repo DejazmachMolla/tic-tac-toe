@@ -16,8 +16,16 @@ class Game
     game = self
     is_won = false
     diagonals = game.create_diagonals
-    # arrays is a 3 dimensional array with 3 2-dimensional elements
     arrays = [game.board, game.board.transpose, diagonals]
+    # arrays initially will look like the following
+    # arrays = [
+    #   [                  [                 [
+    #     [1, 2, 3],         [1, 4, 7],        [1, 5, 9]
+    #     [4, 5, 6],         [2, 5, 8],        [3, 5, 7]
+    #     [7, 8, 9]          [3, 6, 9],      ]
+    #   ],                 ],
+    # ]
+    #
     arrays.each do |array|
       array.any? do |arr|
         is_won = true if arr.all? { |elem| elem == game.current_player.sym }
@@ -34,8 +42,10 @@ class Game
     arrays = [game.board, game.board.transpose, diagonals]
     arrays.each do |array|
       array.any? do |arr|
+        # if two cells are symbols and the third one is numeric
         if (arr.count { |elem| elem == 'X' } == 2 && arr.any? { |elem| elem.is_a?(Numeric) }) ||
            (arr.count { |elem| elem == 'O' } == 2 && arr.any? { |elem| elem.is_a?(Numeric) }) ||
+           # if there are more than 1 numeric values in the 3 element array
            (arr.count { |elem| elem.is_a?(Numeric) } > 1)
           is_drawn = false
         end
