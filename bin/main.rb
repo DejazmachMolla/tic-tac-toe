@@ -46,6 +46,7 @@ def start(players)
   end
 end
 
+# rubocop: disable Metrics/CyclomaticComplexity
 def play(game)
   entry = nil
   is_won = false
@@ -62,6 +63,7 @@ def play(game)
     is_won = game.won
     is_drawn = game.drawn
   end
+  # rubocop: enable Metrics/CyclomaticComplexity
 
   if is_won
     puts "Congratulations #{game.current_player.name}. You won the game."
