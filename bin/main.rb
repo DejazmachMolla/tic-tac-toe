@@ -45,34 +45,34 @@ def start(players)
   player_2 = Player.new(players[1], 'O')
   while continue_game
     game = Game.new([[1, 2, 3], [4, 5, 6], [7, 8, 9]], player_1, player_2)
-    play_game(game)
+    play(game)
     puts 'Do you want to play again? Enter Y to continue or any other character to quit.'
     continue_game_char = gets.chomp
     continue_game = %w[y Y].include?(continue_game_char)
   end
 end
 
-def play_game(game) # receive game as argument
+def play(game) # receive game as argument
   entry = nil
-  is_game_won = false
-  is_game_drawn = false
-  while !is_game_won || !is_game_drawn # check game won or drawn before requesting entry
-    if entry
+  is_won = false
+  is_drawn = false
+  while !is_won && !is_drawn # check game won or drawn before requesting entry
+    if !entry.nil?
       game = switch_current_player(game) # change current player except from the first move
-      game = game.update_board(entry)
     end
-    display_board(game.board)
-    
-    
+    display_board(game.board) if entry.nil?
+
     puts "#{game.current_player.name}'s turn!" # current players's turn
     entry = receive_number(game) # pass the game to the receive number
-    is_game_won = game.won(entry)
-    is_game_drawn = game.drawn(entry)
+    game = game.update_board(entry)
+    display_board(game.board)
+    is_won = game.won(entry)
+    is_drawn = game.drawn(entry)
   end
 
-  if is_game_won
+  if is_won
     puts "Congratulations #{game.current_player.name}. You won the game." #congratulations current player
-  elsif is_game_drawn
+  elsif is_drawn
     puts 'Game Drawn!'
   end
 end
@@ -96,11 +96,7 @@ def receive_number(game)
 end
 
 def switch_current_player(game)
-  if game.current_player == game.player_1
-    game.current_player = game.player_2
-  else
-    game.current_player = game.player_1
-  end
+  game.current_player = ( game.current_player == game.player_1 ) ? game.player_2 : game.player_1
   return game
 end
 players = receive_player_info

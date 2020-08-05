@@ -13,7 +13,24 @@ class Game
 
   
   def won(entry)
-    rand(1..10) > 6
+    game = self
+    is_won = false
+    puts game.current_player.sym
+    arrays = [game.board, game.board.transpose]
+    arrays.each do |array|
+      array.any? do |arr| 
+        if arr.all? {|elem| elem == game.current_player.sym }
+          is_won = true
+        end
+      end
+    end
+
+    if ( (game.board[0][0] == game.board[1][1] && game.board[0][0] == game.board[2][2]) ||
+      ( game.board[0][2] == game.board[1][1] && game.board[0][2] == game.board[2][0]) )
+      is_won = true
+    end
+  
+    is_won
   end
 
   def drawn(entry)
