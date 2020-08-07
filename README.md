@@ -19,10 +19,12 @@
 ## Game Instructions
 - Player 1 and player 2 will be asked for their name
 - A playing board will be presented as shown in the following screenshot
-![screenshot](./lib/welcome.png)
+
+![screenshot](./lib/welcome.PNG)
 - Players will choose numbers between 1 and 9 that are not already chosen
 - The two players will choose numbers alternatively and the number chosen will be replaced by an X or O symbol as shown below
-![screenshot](./lib/symbol.png)
+
+![screenshot](./lib/symbol.PNG)
 - The player who succeeds in placing three of their marks in a horizontal, vertical, or diagonal row will win
 - If winning doesn't happen, a draw(tie) will happen in the end
 - The player that won will be congratulated or the draw of the game will be informed for the players
