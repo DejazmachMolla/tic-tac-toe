@@ -16,15 +16,7 @@ class Game
     is_won = false
     diagonals = game.create_diagonals
     arrays = [game.board, game.board.transpose, diagonals]
-    # arrays initially will look like the following
-    # arrays = [
-    #   [                  [                 [
-    #     [1, 2, 3],         [1, 4, 7],        [1, 5, 9]
-    #     [4, 5, 6],         [2, 5, 8],        [3, 5, 7]
-    #     [7, 8, 9]          [3, 6, 9],      ]
-    #   ],                 ],
-    # ]
-    #
+    # arrays is a three elements array where each of it's elements are two dimensional arrays
     arrays.each do |array|
       array.any? do |arr|
         is_won = true if arr.all? { |elem| elem == game.current_player.sym }
