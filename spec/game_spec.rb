@@ -7,10 +7,15 @@ describe Game do
     let (:players) { ['d', 'j'] }
     let (:player1) { Player.new(players[0], 'X') }
     let (:player2) { Player.new(players[1], 'O') }
-    let (:game) { Game.new([['X', 'X', 'X'], [4, 5, 6], [7, 8, 9]], player1, player2) }
+    let (:game1) { Game.new([['X', 'X', 'X'], [4, 5, 6], [7, 8, 9]], player1, player2) }
+    let (:game2) { Game.new([['X', 'X', 'O'], [4, 5, 6], [7, 8, 9]], player1, player2) }
 
     it "returns true because game is won" do
-      expect(game.won).to eql(true)
+      expect(game1.won).to eql(true)
+    end
+
+    it "returns false because game is not won" do
+      expect(game2.won).to eql(false)
     end
   end
 end
