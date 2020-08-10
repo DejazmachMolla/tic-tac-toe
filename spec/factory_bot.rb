@@ -22,11 +22,11 @@ class FactoryBot
     elsif (type == 'diagonally_won')
       game.board[0][0] = 'X'
       game.board[1][1] = 'X'
-      game.board[2][2] = 'O'
+      game.board[2][2] = 'X'
     elsif (type == 'drawn')
-
+      game.board = [['X', 'O', 'X'], ['X', 'O', 'X'], ['O', 'X', 'O']]
     elsif (type == 'not_drawn')
-
+      game.board = [[1, 'X', 'X'], ['X', 'O', 'O'], ['O', 'X', 'O']]
     end
     game
   end

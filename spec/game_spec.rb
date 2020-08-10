@@ -4,25 +4,31 @@ require_relative './factory_bot.rb'
 #spec/game_spec.rb
 describe Game do
   describe "#won" do
-    context 'when the game is won' do
-      it "returns true" do
-        won_game = FactoryBot.create_game('won')
-        expect(won_game.won).to eql(true)
-      end
-    end
-    context 'when the game is not won' do
-      it "returns false" do
-        un_won_game = FactoryBot.create_game('un_won')
-        expect(un_won_game.won).to eql(false)
-      end
+    it "returns true if the game is won" do
+      won_game = FactoryBot.create_game('won')
+      expect(won_game.won).to eql(true)
     end
 
-    context 'when the game is diagonally won' do
-      it "returns true" do
-        un_won_game = FactoryBot.create_game('diagonally_won')
-        expect(un_won_game.won).to eql(false)
-      end
+    it "returns false if the game is not won" do
+      un_won_game = FactoryBot.create_game('un_won')
+      expect(un_won_game.won).to eql(false)
     end
 
+    it "returns true if the game is won diagonally" do
+      diagonally_won_game = FactoryBot.create_game('diagonally_won')
+      expect(diagonally_won_game.won).to eql(true)
+    end
+  end
+
+  describe "#drawn" do
+    it "returns true if the game is drawn" do
+      drawn_game = FactoryBot.create_game('drawn')
+      expect(drawn_game.drawn).to eql(true)
+    end
+
+    it "returns false if the game is not drawn" do
+      not_drawn_game = FactoryBot.create_game('not_drawn')
+      expect(not_drawn_game.drawn).to eql(false)
+    end
   end
 end
