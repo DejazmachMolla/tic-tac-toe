@@ -9,20 +9,25 @@ class FactoryBot
     game
   end
 
-  def self.create_winning_game
+  def self.create_game(type)
     game = initialize_game
-    game.board[0][0] = 'X'
-    game.board[0][1] = 'X'
-    game.board[0][2] = 'X'
-    game
-  end
+    if (type == 'won')
+      game.board[0][0] = 'X'
+      game.board[0][1] = 'X'
+      game.board[0][2] = 'X'
+    elsif (type == 'un_won')
+      game.board[0][0] = 'X'
+      game.board[0][1] = 'X'
+      game.board[0][2] = 'O'
+    elsif (type == 'diagonally_won')
+      game.board[0][0] = 'X'
+      game.board[1][1] = 'X'
+      game.board[2][2] = 'O'
+    elsif (type == 'drawn')
 
-  def self.create_un_won_game
-    game = initialize_game
-    game.board[0][0] = 'X'
-    game.board[0][1] = 'X'
-    game.board[0][2] = 'O'
+    elsif (type == 'not_drawn')
+
+    end
     game
   end
-  
 end
