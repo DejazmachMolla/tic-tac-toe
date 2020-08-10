@@ -1,7 +1,7 @@
 require_relative '../lib/game.rb'
 require_relative '../lib/player.rb'
 require_relative './factory_bot.rb'
-#spec/game_spec.rb
+# spec/game_spec.rb
 describe Game do
   describe '#won' do
     it 'returns true if the game is won' do
