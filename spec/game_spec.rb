@@ -38,4 +38,12 @@ describe Game do
       expect(initial_game.update_board(5).board[1][1]).to eql('X')
     end
   end
+
+  describe '#create_diagonals' do
+    it 'diagonals will be created correctly' do
+      initial_game = FactoryBot.initialize_game
+      diagonals = [[1, 5, 9], [3, 5, 7]]
+      expect(initial_game.create_diagonals).to eql(diagonals)
+    end
+  end
 end
